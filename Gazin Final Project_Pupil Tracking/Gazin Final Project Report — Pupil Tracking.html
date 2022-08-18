@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        Gazin Final Project Report — Pupil Tracking - HackMD
+    </title>
+    <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+    <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i|Source+Code+Pro:300,400,500|Source+Sans+Pro:300,300i,400,400i,600,600i|Source+Serif+Pro&subset=latin-ext);.hljs{display:block;background:#fff;padding:.5em;color:#333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-emphasis,.hljs-quote,.hljs-string,.hljs-strong,.hljs-template-variable,.hljs-variable{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-attribute,.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#0086b3}.hljs-built_in,.hljs-builtin-name{color:#005cc5}.hljs-name,.hljs-section{color:#63a35c}.hljs-tag{color:#333}.hljs-attr,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-title{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}.markdown-body{font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e7e7e7;border:0}.markdown-body blockquote{font-size:16px;padding:0 1em;color:#777;border-left:.25em solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd,.popover kbd{display:inline-block;padding:3px 5px;font-size:11px;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#000;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#777}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{padding:0;list-style-type:none}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{padding-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:transparent}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{display:block;float:left;width:auto;padding:7px;margin:13px 0 0;overflow:hidden;border:1px solid #ddd}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{display:block;padding:5px 0 0;clear:both;color:#333}.markdown-body span.align-center{display:block;overflow:hidden;clear:both}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{display:block;overflow:hidden;clear:both}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{padding:0;padding-top:.2em;padding-bottom:.2em;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{letter-spacing:-.2em;content:"\00a0"}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f7f7f7;border-radius:3px}.markdown-body pre code,.markdown-body pre tt{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{padding:10px 8px 9px;text-align:right;background:#fff;border:0}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{font-weight:700;background:#f8f8f8;border-top:0}.news .alert .markdown-body blockquote{padding:0 0 0 40px;border:0 none}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle;cursor:default!important}.markdown-body{padding-top:40px;padding-bottom:40px;max-width:758px;overflow:visible!important;position:relative}.markdown-body .emoji{vertical-align:top}.markdown-body pre{border:inherit!important}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{text-align:right;position:relative;display:inline-block;cursor:default;z-index:4;padding:0 8px 0 0;min-width:20px;box-sizing:content-box;color:#afafaf!important;border-right:3px solid #6ce26c!important}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-left:none;border-top:none;border-bottom:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-spacing:0;border-collapse:inherit!important}.markdown-body code[data-gist-id]{background:none;padding:0}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{overflow:unset;margin-bottom:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p:last-child{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{text-align:center;background-color:inherit;border-radius:0;white-space:inherit;overflow:visible}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{max-width:100%;height:100%}.markdown-body pre>code.wrap{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}.markdown-body .alert>p:last-child,.markdown-body .alert>ul:last-child{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body .mark,.markdown-body mark{background-color:#fff1a7}.vimeo,.youtube{cursor:pointer;display:table;text-align:center;background-position:50%;background-repeat:no-repeat;background-size:contain;background-color:#000;overflow:hidden}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{width:100%;object-fit:contain;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{width:100%;height:100%;position:absolute;top:0;left:0}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{position:absolute;height:auto;width:auto;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;opacity:.3;transition:opacity .2s;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%}.figma{display:table;position:relative;width:100%;padding-bottom:56.25%}.figma iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;border:1px solid #eee}.markmap-container{height:300px}.markmap-container>svg{width:100%;height:100%}.MJX_Assistive_MathML{display:none}#MathJax_Message{z-index:1000!important}.ui-infobar{position:relative;z-index:2;max-width:760px;margin:25px auto -25px;color:#777}.toc .invisable-node{list-style-type:none}.ui-toc{position:fixed;bottom:20px;z-index:998}.ui-toc.both-mode{margin-left:8px}.ui-toc.both-mode .ui-toc-label{height:40px;padding:10px 4px;border-top-left-radius:0;border-bottom-left-radius:0}.ui-toc-label{background-color:#e6e6e6;border:none;color:#868686;transition:opacity .2s}.ui-toc .open .ui-toc-label{opacity:1;color:#fff;transition:opacity .2s}.ui-toc-label:focus{opacity:.3;background-color:#ccc;color:#000}.ui-toc-label:hover{opacity:1;background-color:#ccc;transition:opacity .2s}.ui-toc-dropdown{margin-top:20px;margin-bottom:20px;padding-left:10px;padding-right:10px;max-width:45vw;width:25vw;max-height:70vh;overflow:auto;text-align:inherit}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{padding-right:0;letter-spacing:.0029em}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{display:block;padding:4px 20px;font-size:13px;font-weight:500;color:#767676}.ui-toc-dropdown .nav>li:first-child:last-child>ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{padding-left:19px;color:#000;text-decoration:none;background-color:transparent;border-left:1px solid #000}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{padding-right:19px;border-left:none;border-right:1px solid #000}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{padding-left:18px;font-weight:700;color:#000;background-color:transparent;border-left:2px solid #000}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{padding-right:18px;border-left:none;border-right:2px solid #000}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{padding-top:1px;padding-bottom:1px;padding-left:30px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:40px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{padding-left:28px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{padding-left:38px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif}html[lang^=ja] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html .markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html .markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html .markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html[lang^=ja] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html[lang=zh-tw] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html[lang=zh-cn] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}html .ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html .ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html .ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}.ui-affix-toc{position:fixed;top:0;max-width:15vw;max-height:70vh;overflow:auto}.back-to-top,.expand-toggle,.go-to-bottom{display:block;padding:4px 10px;margin-top:10px;margin-left:10px;font-size:12px;font-weight:500;color:#999}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{width:20px;height:20px;display:block;border-radius:50%;margin-top:2px;margin-bottom:2px;margin-right:5px;background-position:50%;background-repeat:no-repeat;background-size:cover}.ui-user-icon.small{width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 0 .2em}.ui-infobar>small>span{line-height:22px}.ui-infobar>small .dropdown{display:inline-block}.ui-infobar>small .dropdown a:focus,.ui-infobar>small .dropdown a:hover{text-decoration:none}.ui-more-info{color:#888;cursor:pointer;vertical-align:middle}.ui-more-info .fa{font-size:16px}.ui-connectedGithub,.ui-published-note{color:#888}.ui-connectedGithub{line-height:23px;white-space:nowrap}.ui-connectedGithub a.file-path{color:#888;text-decoration:none;padding-left:22px}.ui-connectedGithub a.file-path:active,.ui-connectedGithub a.file-path:hover{color:#888;text-decoration:underline}.ui-connectedGithub .fa{font-size:20px}.ui-published-note .fa{font-size:20px;vertical-align:top}.unselectable{-webkit-user-select:none;-o-user-select:none;user-select:none}.selectable{-webkit-user-select:text;-o-user-select:text;user-select:text}.inline-spoiler-section{cursor:pointer}.inline-spoiler-section .spoiler-text{border-radius:2px;background-color:#333}.inline-spoiler-section .spoiler-text>*{opacity:0}.inline-spoiler-section .spoiler-img{filter:blur(10px)}.inline-spoiler-section.raw{border-radius:2px;background-color:#333}.inline-spoiler-section.raw>*{opacity:0}.inline-spoiler-section.unveil{cursor:auto}.inline-spoiler-section.unveil .spoiler-text{background-color:rgba(51,51,51,.1)}.inline-spoiler-section.unveil .spoiler-text>*{opacity:1}.inline-spoiler-section.unveil .spoiler-img{filter:none}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{position:relative;z-index:1;color:#222}.markdown-body.slides:before{content:"";display:block;position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;background-color:currentColor;box-shadow:0 0 0 50vw}.markdown-body.slides section[data-markdown]{position:relative;margin-bottom:1.5em;background-color:#fff;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{position:absolute;top:50%;left:1em;right:1em;transform:translateY(-50%);max-height:100%;overflow:hidden}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{content:"";position:absolute;top:-1.5em;right:1em;height:1.5em;border:3px solid #777}.site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;text-shadow:0 0 1em transparent,1px 1px 1.2px rgba(0,0,0,.004);-webkit-overflow-scrolling:touch;letter-spacing:.025em;font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] body{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}abbr[data-original-title],abbr[title]{cursor:help}body.modal-open{overflow-y:auto;padding-right:0!important}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true"><h1 id="Gazin-Final-Project-Report-—-Pupil-Tracking" data-id="Gazin-Final-Project-Report-—-Pupil-Tracking"><a class="anchor hidden-xs" href="#Gazin-Final-Project-Report-—-Pupil-Tracking" title="Gazin-Final-Project-Report-—-Pupil-Tracking"><span class="octicon octicon-link"></span></a><span>Gazin Final Project Report — Pupil Tracking</span></h1><h2 id="Pipeline" data-id="Pipeline"><a class="anchor hidden-xs" href="#Pipeline" title="Pipeline"><span class="octicon octicon-link"></span></a><span>Pipeline</span></h2><ol data-original-title="" title="">
+<li><span>Concat 5 Images as input data</span></li>
+<li><span>Model training</span></li>
+<li><span>Supervised learning with labels</span></li>
+<li><span>Predict Pupil masks</span></li>
+<li><span>Generate confidence value(by comparing predicted pupil area with others)</span></li>
+</ol><p><img src="https://i.imgur.com/gvbUu2U.png" alt="" loading="lazy"></p><h2 id="Pupil-Tracking-Method" data-id="Pupil-Tracking-Method" data-original-title="" title=""><a class="anchor hidden-xs" href="#Pupil-Tracking-Method" title="Pupil-Tracking-Method"><span class="octicon octicon-link"></span></a><span>Pupil Tracking Method:</span></h2><p data-original-title="" title=""><span>我們認為此期末專題可以拆成下列兩個子問題，第一是預測瞳孔在圖片中的位置，</span><br>
+<span>第二為confidence value的預測，也就是我們認為該瞳孔存在該圖片的機率。</span><br>
+<span>而此二問題一個在預測位置，一個為二元分類，是兩個不同類型的子問題，因此一開始我們決定用兩個不同的模型進行預測與學習。</span></p><p><span>此外，由於本組運算資源比較稀缺，因此我們做了比較多傳統方法(非ML)的實驗來增進結果，就沒有去嘗試很多更深、更複雜的神經網路架構。</span></p><h3 id="1Pupil-Image-Generator" data-id="1Pupil-Image-Generator"><a class="anchor hidden-xs" href="#1Pupil-Image-Generator" title="1Pupil-Image-Generator"><span class="octicon octicon-link"></span></a><span>1.Pupil Image Generator</span></h3><p><span>為了產生圖片，我們決定訓練一個輸入輸出皆為圖片的Deep Learning Model來解決問題。</span><br>
+<span>我們第一時間想到的是AutoEncoder的架構，因為它的輸入輸出也是相同大小的圖片，所以只要讓模型改成預測瞳孔的label，輸入輸出就對上了，可以用來解看看這個問題。</span><br>
+<span class="ui-comment-inline-span">AutoEncoder的架構為一個編碼器(encoder)直接接到一個解碼器(decoder)。其中encoder可以擷出取圖片中的特徵(feature)</span><span>，所以我們一開始有試過把encoder的輸出直接接到另一個二元分類器(binary classifier)用來預測confidence，這樣就能將兩個模型一起train，節省時間與參數。雖然因為未解決的overfit的問題，我們最終沒有使用這個binary classifier來預測confidence，但AutoEncoder的架構就保留了下來。</span></p><p><span>這邊我們在做training時刪掉了沒有label上沒有瞳孔的圖片，只留有label的圖片進行training，希望模型能專注在標出圖片中的瞳孔。</span></p><h3 id="2Confidence-Value-Generator" data-id="2Confidence-Value-Generator"><a class="anchor hidden-xs" href="#2Confidence-Value-Generator" title="2Confidence-Value-Generator"><span class="octicon octicon-link"></span></a><span>2.Confidence Value Generator:</span></h3><p><span>前面提到，我們一開始產生confidnence value時一樣是用deep learning的方式去產生結果，但我們在該方法的表現不佳，且輸出多不是單純的0或1，在結果預測上會有較多誤差，也因此棄用該模型。</span><br>
+<span>我們認為可以直接分析瞳孔標註模型所預測的瞳孔圖片，最後採用頗為直觀的方法如下:</span><br>
+<strong><span>Step 1:</span></strong></p><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_avg</span>(<span class="hljs-params">data_path, root</span>):
+  data_len = <span class="hljs-built_in">len</span>(data_path)
+  area = np.zeros(shape=data_len)
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(data_len):
+    img = cv2.imread(root + <span class="hljs-built_in">str</span>(i) + <span class="hljs-string">".png"</span>)[:, :, <span class="hljs-number">0</span>]
+    area[i] = np.<span class="hljs-built_in">sum</span>(img&gt;<span class="hljs-number">128</span>) * <span class="hljs-number">255</span>
+  avg_area = np.<span class="hljs-built_in">sum</span>(area) / data_len
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(data_len):
+    <span class="hljs-keyword">if</span> area[i] &lt; avg_area * <span class="hljs-number">0.5</span>:
+      area[i] = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">return</span> area, avg_area
+</div></div></code></pre><p><span>由於會有閉眼、瞳孔面積過小的圖片，該類圖片無法辨別瞳孔位置。因此我們將model產生的圖片每個sequence去算出平均的瞳孔面積，接著將小於0.5*avg_area的圖片area直接設為0回傳，也就是認定為"沒有瞳孔"的圖片。</span><br>
+<strong><span>Step 2:</span></strong></p><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">filter</span>(<span class="hljs-params">area, avg_area</span>):
+  window_len = <span class="hljs-number">5</span>
+  area_len = area.shape[<span class="hljs-number">0</span>]
+  result = np.zeros(shape = area_len)
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(window_len//<span class="hljs-number">2</span>):
+    <span class="hljs-keyword">if</span>(area[i] &gt; avg_area):
+      result[i] = <span class="hljs-number">1.0</span>
+    <span class="hljs-keyword">if</span>(area[-i-<span class="hljs-number">1</span>] &gt; avg_area):
+      result[-i-<span class="hljs-number">1</span>] = <span class="hljs-number">1.0</span>
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(window_len // <span class="hljs-number">2</span>, area_len - window_len // <span class="hljs-number">2</span>):
+    window = area[i-window_len//<span class="hljs-number">2</span>:i+window_len//<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]
+    local_max = np.<span class="hljs-built_in">max</span>(window)
+    <span class="hljs-keyword">if</span> local_max &gt; <span class="hljs-number">0</span>:
+      <span class="hljs-keyword">if</span>(area[i] &gt; local_max * <span class="hljs-number">0.5</span>):
+        result[i] = <span class="hljs-number">1.0</span>
+  <span class="hljs-keyword">return</span> result
+</div></div></code></pre><p><span>第二，由於我們預測出來的圖片經過觀察，發現會有缺漏，也就是低估瞳孔average的面積(即使瞳孔面積在整個sequence中都保持不變，上一步算出的average還是可能被一些閉眼的圖片給拉低)，因此在第二步進行嚴格的篩選，將先前瞳孔&gt;average*0.5的圖片，再做一次分類，以避免太容易將圖片標為1。</span><br>
+<span>作法：將某張圖及其前後各2張，共5張瞳孔面積的最大值當作local的瞳孔大小，如果大於此面積的0.5倍，就將confidence value標為1，反之就標為0。</span></p><p><strong><span>Step 3:</span></strong></p><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">post_process</span>(<span class="hljs-params">result, txt_path</span>):
+  result_len = result.shape[<span class="hljs-number">0</span>]
+  ans = np.zeros(shape=result.shape)
+  window_len = <span class="hljs-number">5</span>
+  copy_data = np.zeros(shape = result_len+<span class="hljs-number">2</span>*(window_len//<span class="hljs-number">2</span>))
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(result_len):
+    copy_data[i+window_len//<span class="hljs-number">2</span>] = result[i]
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(window_len//<span class="hljs-number">2</span>):
+    w_l = window_len//<span class="hljs-number">2</span> - i
+    copy_data[i] = copy_data[i+w_l*<span class="hljs-number">2</span>]
+    copy_data[-i-<span class="hljs-number">1</span>] = copy_data[(-i-<span class="hljs-number">1</span>)-w_l*<span class="hljs-number">2</span>]
+
+  result_len = copy_data.shape[<span class="hljs-number">0</span>]
+
+  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(window_len//<span class="hljs-number">2</span>, result_len-window_len//<span class="hljs-number">2</span>):
+    window = copy_data[i-window_len//<span class="hljs-number">2</span>:i+window_len//<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]
+    result[i-window_len//<span class="hljs-number">2</span>] = np.median(window)
+
+  <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(txt_path, <span class="hljs-string">'w'</span>) <span class="hljs-keyword">as</span> f:
+    <span class="hljs-keyword">for</span> cnt, item <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(result):
+      f.write(<span class="hljs-built_in">str</span>(item)+<span class="hljs-string">"\n"</span>)
+</div></div></code></pre><p><span>最後這步則是抓出某張圖及其前後各兩張，共5張圖的confidence value，並取出其中位數填入，選定前後5張值的中位數來代表該圖片。會想這麼做是因為多數圖片中眼睛的動作有時間上的連續性，也就是睜眼會繼續睜眼，眨眼的瞬間也連續，而閉眼也會連續，因此若能參酌鄰近圖片的confidence value來修正輸出，就能避免在一串閉眼圖中突然出現出現1，或在一串睜眼圖中輸出0。</span></p><h2 id="Experiment" data-id="Experiment"><a class="anchor hidden-xs" href="#Experiment" title="Experiment"><span class="octicon octicon-link"></span></a><span>Experiment:</span></h2><h3 id="Step1Oversample-the-0-labeled-images" data-id="Step1Oversample-the-0-labeled-images"><a class="anchor hidden-xs" href="#Step1Oversample-the-0-labeled-images" title="Step1Oversample-the-0-labeled-images"><span class="octicon octicon-link"></span></a><span>Step1.Oversample the 0-labeled images</span></h3><p><span>雖然我們最終沒有使用NN based binary classifier來預測confidence，但我們一開始還是在改善其表現上做了一點努力。</span><br>
+<span>在訓練binary classifier時，由於在training data中有資料不平衡的狀況，也就是沒有瞳孔的資料太少，大部分都是有瞳孔的資料。這可能導致我們的模型只學到有瞳孔的資料，進而在結果中常常會判斷錯誤(模型會特別喜歡輸出1，也就是有瞳孔)。經過資料分析後，發現有瞳孔的資料：沒瞳孔的資料大約是10:1。因此在訓練中，我們對沒瞳孔的資料進行oversample取10次，希望能讓模型學到沒有瞳孔的資料。在增加此步驟後，模型偏好輸出1的情況獲得了改善。</span></p><h3 id="Step2Combine-5-images-as-model-input" data-id="Step2Combine-5-images-as-model-input"><a class="anchor hidden-xs" href="#Step2Combine-5-images-as-model-input" title="Step2Combine-5-images-as-model-input"><span class="octicon octicon-link"></span></a><span>Step2.Combine 5 images as model input</span></h3><p><span>原先對單張圖進行學習並輸出瞳孔位置時，若遇到眨眼，在瞳孔面積接近一半的情況下，模型容易有異常輸出，沒辦法做準確的預測。(因為模型的確是沒有被眼皮遮蓋住的ㄊㄨㄥ)而我們認為眨眼是連續動作，經過對資料的觀察與分析，發現約三張圖可以完成眨眼，因此在前後各多取兩張圖，共五張圖做為我們判斷中間那張圖瞳孔位置的依據，讓模型的輸出更健全。</span><br>
+<img src="https://i.imgur.com/jdQRf2M.png" alt="" loading="lazy"><br>
+<span>(示意圖，此為預測63.jpg的瞳孔位置時的輸入，這5張圖會被concat起來變成一張5個channel的圖片丟進模型，這樣模型就有機會能根據61.jpg來得知完整的瞳孔形狀)</span></p><h3 id="Step3Increase-the-training-data-with-eyelash-on-it" data-id="Step3Increase-the-training-data-with-eyelash-on-it"><a class="anchor hidden-xs" href="#Step3Increase-the-training-data-with-eyelash-on-it" title="Step3Increase-the-training-data-with-eyelash-on-it"><span class="octicon octicon-link"></span></a><span>Step3.Increase the training data with eyelash on it</span></h3><p><span>與Oversample相同的道理，由結果發現，當有睫毛擋到瞳孔時，我們輸出的瞳孔圖常會有缺陷，如圖</span><br>
+<img src="https://i.imgur.com/UqxFiSK.png" alt="" loading="lazy"><br>
+<span>推測是因為有睫毛擋到瞳孔的資料太少，因此我們對有睫毛的資料進行data augmentation，而為了不讓瞳孔移出圖片外，我們只進行horizontal flip, vertical flip以及rotate，以盡量保持資料的正確性。然而，此效果不彰，對於模型的預測結果沒有太大的改善。</span></p><h3 id="Step4Adjust-CNN-Kernel-Size" data-id="Step4Adjust-CNN-Kernel-Size"><a class="anchor hidden-xs" href="#Step4Adjust-CNN-Kernel-Size" title="Step4Adjust-CNN-Kernel-Size"><span class="octicon octicon-link"></span></a><span>Step4.Adjust CNN Kernel Size</span></h3><p><span>一開始在訓練標記瞳孔的模型時，我們發現當瞳孔大小比較大時，模型標記的瞳孔會容易是中空的。針對這種洞我們則是將模型某一層的的kernel size調大，因為我們推測kernel size不夠大，或通過層數不夠多可能導致瞳孔中間無法被判斷為瞳孔，進而產生洞。(瞳孔中心附近為一片黑色，沒有足夠的feature來確認其為瞳孔而不是背景，因此模型很可能是先做edge detection找到瞳孔邊緣後再往內填色，而前述方法就是為了讓模型能將edge的資訊橫向傳遞給距離更遠的pixel)</span><br>
+<span>經過此調整後，預測瞳孔的圖有效獲得改善。</span><br>
+<img src="https://i.imgur.com/ttZda0V.png" alt="" loading="lazy"></p><h3 id="Step5Morphological-Operation-amp-Weighted-Median-FilterWMF" data-id="Step5Morphological-Operation-amp-Weighted-Median-FilterWMF"><a class="anchor hidden-xs" href="#Step5Morphological-Operation-amp-Weighted-Median-FilterWMF" title="Step5Morphological-Operation-amp-Weighted-Median-FilterWMF"><span class="octicon octicon-link"></span></a><span>Step5.Morphological Operation &amp; Weighted Median Filter(WMF)</span></h3><p><span>我們發現，模型生出來的圖有些只能將瞳孔邊緣標記出來，中間會有</span><span class="ui-comment-inline-span">空洞</span><span>，無法完整表示瞳孔的位置，且在處理睫毛遮蓋到瞳孔的圖片時，該現象會特別明顯，因此針對此問題我們嘗試下列兩項方法：</span><br>
+<strong><span>(1)Morphological Operation:</span></strong><br>
+<img src="https://i.imgur.com/KemFHll.png" alt="" loading="lazy"><br>
+<span>(出自簡韶逸老師上課投影片Lec2)</span><br>
+<span>從label圖片中可發現，除了瞳孔以外，其他部分皆為黑色，也就是pixel value為0，而瞳孔為粉紅色，其pixel value大於0。</span><br>
+<span>因此為了將黑色的孔洞補成粉紅色，我們先進行Dilation，也就是透過max pooling以該kernel中的最大值來表示該kernel所有成員的值。</span><br>
+<span>然而這樣的做法會將部份瞳孔外的區域認定為瞳孔，因此再對外圍進行Erosion，也就是min pooling將邊界值認定為黑色。</span><br>
+<span>如此一來，雖然有可能損失部分瞳孔邊界的銳利度，但能將中間大量的孔洞填補起來。</span><br>
+<img src="https://i.imgur.com/W5pIFoT.png" alt="" loading="lazy"></p><p><strong><span>(2)Weighted median filter</span></strong><br>
+<span>傳統的median filter可以被拿來補一些小洞，或消除照片中局部的noise。而weighted median filter不同於傳統的median filter直接取周圍所有值的median，WMF會考慮到周圍pixel的顏色，給顏色相近者較大的權重，來解決sharp edge會被median filter模糊的問題。</span><br>
+<span>不僅不會模糊，WMF甚至也有機會能使edge更加清晰，達到sharpen edge的作用，如下圖所示。</span><br>
+<img src="https://i.imgur.com/4K9UXOF.png" alt="" loading="lazy"><br>
+<span>(column1：input data,</span><br>
+<span>column2 : labels,</span><br>
+<span>column3 : the L1 difference from labels before WMF,</span><br>
+<span>column4 : the L1 difference from labels after WMF)</span><br>
+<span>由圖可得知，column3在進行WMF前與labels的差距，明顯比column4進行WMF之後的圖來得大，因此WMF對於edge sharpening有很大的幫助。</span></p><table>
+<thead>
+<tr>
+<th><span>Data</span></th>
+<th><span>Percentage error before WMF</span></th>
+<th><span>Percentage error After WMF</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>1</span></td>
+<td><span>10.6%</span></td>
+<td><span>6.8%</span></td>
+</tr>
+<tr>
+<td><span>2</span></td>
+<td><span>3.1%</span></td>
+<td><span>1.9%</span></td>
+</tr>
+<tr>
+<td><span>3</span></td>
+<td><span>3.6%</span></td>
+<td><span>2.8%</span></td>
+</tr>
+<tr>
+<td><span>4</span></td>
+<td><span>3.7%</span></td>
+<td><span>2.4%</span></td>
+</tr>
+<tr>
+<td><span>5</span></td>
+<td><span>3.6%</span></td>
+<td><span>2.3%</span></td>
+</tr>
+</tbody>
+</table><h2 id="Codalab-ResultsS5" data-id="Codalab-ResultsS5"><a class="anchor hidden-xs" href="#Codalab-ResultsS5" title="Codalab-ResultsS5"><span class="octicon octicon-link"></span></a><span>Codalab Results(S5)</span></h2><table>
+<thead>
+<tr>
+<th><span>Method</span></th>
+<th><span>Accuracy</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>Pupil Generator Model + Confidence Value Model(NN) + step1~2</span></td>
+<td><span>0.767419</span></td>
+</tr>
+<tr>
+<td><span>Pupil Generator Model + Confidence Value Model(NN) + step1~3</span></td>
+<td><span>0.786316</span></td>
+</tr>
+<tr>
+<td><span>Above + data augmentation</span></td>
+<td><span>0.837472</span></td>
+</tr>
+<tr>
+<td><span>Confidence Value Generator by above algorithm(Rule-based)</span></td>
+<td><span>0.885683</span></td>
+</tr>
+</tbody>
+</table><h2 id="Review" data-id="Review"><a class="anchor hidden-xs" href="#Review" title="Review"><span class="octicon octicon-link"></span></a><span>Review</span></h2><h3 id="1沒有進行額外model的嘗試" data-id="1沒有進行額外model的嘗試"><a class="anchor hidden-xs" href="#1沒有進行額外model的嘗試" title="1沒有進行額外model的嘗試"><span class="octicon octicon-link"></span></a><span>1.沒有進行額外model的嘗試:</span></h3><p><span>我們在產生瞳孔的模型僅使用過基礎的autoencoder架構(簡單的CNN)，而沒有再額外嘗試諸如DenseNet, Resnext, VGG等等經典的model交互比較，而由於我們上述Rule-based confidence value generator的表現很大程度取決於我們model所生出來的結果(標出來的瞳孔面積)，因此我們認為沒有選擇效果較強且更為適切的模型是其中一個關鍵問題。</span><br>
+<span>由於本次期末專題使用的圖片較大張，資訊較多，壓縮圖片又怕會失去很多資訊導致邊緣判斷失準，解析度降低，因此都用原圖進行訓練。而deep learning的方法很吃GPU設備，只有使用Colab的我們常常訓練模型都要訓練20、30個小時，中間也可能被中斷，被硬體給限制住能嘗試的模型種類。</span></p><h3 id="2Training-Epoch不夠多" data-id="2Training-Epoch不夠多"><a class="anchor hidden-xs" href="#2Training-Epoch不夠多" title="2Training-Epoch不夠多"><span class="octicon octicon-link"></span></a><span>2.Training Epoch不夠多</span></h3><p><span>我們推測瞳孔的圖會沒標好的另一原因在於訓練的epoch不夠多，model可能還沒train至完全收斂我們就開始test，也因此我們的結果不甚理想。</span></p><h3 id="3使用了Rule-based的方法來做confidence-prediction" data-id="3使用了Rule-based的方法來做confidence-prediction"><a class="anchor hidden-xs" href="#3使用了Rule-based的方法來做confidence-prediction" title="3使用了Rule-based的方法來做confidence-prediction"><span class="octicon octicon-link"></span></a><span>3.使用了Rule-based的方法來做confidence prediction</span></h3><p><span>我們最後用了rule-based的方法來產生confidence value，並且在S5上得到了還不錯的結果。但前面也提過，這種方法的表現會嚴重取決於瞳孔標註模型標出的瞳孔面積；此外由於我們是人工來制定判別規則，對於一些我們想像之外的圖片分布可能就比較無法適應。比如說我們設計的演算法中有用到"同一個sequence中各圖之間瞳孔大小的關係"這個資訊；而在我們看得到的dataset中，label為0的圖片量從未超過sequence中圖片總數的一半，但在hidden set中未必是如此，如果出現諸如此類的狀況，我們設計的演算法就可能會出各種奇怪的問題。這邊我們認為，瞳孔的存在與否應該可以直接由瞳孔的形狀、與相鄰其他瞳孔的可見面積等等local的資訊就推得，未必需要看到整個sequence這麼多，而NN理應能把這件事做得很好，所以如果我們改回使用NN來做confidence prediction，並想辦法解決overfit的話，應該能有更好的表現。</span></p><h3 id="4沒有實作太多Data-augmentation" data-id="4沒有實作太多Data-augmentation"><a class="anchor hidden-xs" href="#4沒有實作太多Data-augmentation" title="4沒有實作太多Data-augmentation"><span class="octicon octicon-link"></span></a><span>4.沒有實作太多Data augmentation</span></h3><p><span>因為擔心把瞳孔移出圖片外，我們在做binary classifier時沒有疊太多augment。也可能是這個原因，最後跑出來的confidence model在S5上的表現不理想。後來我們覺得其實還有很多色彩上的augmentation是可以用的，不用擔心ground truth位移的問題。</span></p><h3 id="5沒有嘗試更多的post-process" data-id="5沒有嘗試更多的post-process"><a class="anchor hidden-xs" href="#5沒有嘗試更多的post-process" title="5沒有嘗試更多的post-process"><span class="octicon octicon-link"></span></a><span>5.沒有嘗試更多的post process</span></h3><p><span>我們在最後產生confidence value時沒有使用deep learning中常使用的技巧–ensemble，且也沒對生出來的瞳孔的圖做更多圖像處理會用的技巧，我們事後認為若這些操作可能會對表現有所提升，比起單一模型可以有較robust的結果。</span></p><h2 id="Conclusion" data-id="Conclusion"><a class="anchor hidden-xs" href="#Conclusion" title="Conclusion"><span class="octicon octicon-link"></span></a><span>Conclusion:</span></h2><p><span>在Pupil Image Generator的任務當中，為了加快運算速度，我們選擇較輕量的深度學習模型，搭配傳統後處理的演算法來補足模型上的不足，但也許因為模型較小，導致部分輸出的圖像不夠完整，尤其是較為noisy的input，就算經過後處理還是無法還原瞳孔位置。</span></p><p><span>而在Confidence Value Generator任務中，我們利用瞳孔面積的變化設計出二元分類演算法，有著非常快的運算速度，但缺點是效果的強弱須取決於Pupil Image Generator，若圖片輸出的結果不佳，則會使Confidence Value也表現的差強人意。</span></p><p><span>根據上述分析與結論，我們在報告的最後提出可以改進演算法的方式以及我們所遺漏的方法與嘗試，在未來碰到相關的task時，也可以將以上所述的方法加以實踐，獲得比現在更好的結果。</span></p><h2 id="Future-Work-聽完報告後寫的" data-id="Future-Work-聽完報告後寫的"><a class="anchor hidden-xs" href="#Future-Work-聽完報告後寫的" title="Future-Work-聽完報告後寫的"><span class="octicon octicon-link"></span></a><span>Future Work (聽完報告後寫的):</span></h2><p><span>藉由以上的討論以及課堂的報告，我們也學到了許多技巧，如果要繼續這個題目的話我們會往以下的方向來嘗試。</span></p><h3 id="1-prepocessing" data-id="1-prepocessing"><a class="anchor hidden-xs" href="#1-prepocessing" title="1-prepocessing"><span class="octicon octicon-link"></span></a><span>1. prepocessing:</span></h3><p><span>前處理使用Gamma correction可以讓瞳孔更加明顯，幫助後續的演算法辨認。另外也可以嘗試不同edge detection的方式，在前處理就獲得一些特徵，幫助模型訓練。最後Ganzin的人員有提到，S8的hidden set連camera的角度都是不同的。對於這樣的資料，做random-perspective應該也是不錯的方法。</span></p><h3 id="2-postprocessing" data-id="2-postprocessing"><a class="anchor hidden-xs" href="#2-postprocessing" title="2-postprocessing"><span class="octicon octicon-link"></span></a><span>2. postprocessing:</span></h3><p><span>在後處理中嘗試使用find contour搭配ellipse fitting或Binarization的方式，提升瞳孔的完整性。</span><br>
+<span>(cv2.ellipse_fitting應該算是滿重要的postprocessing方法，我們在這之前不知道這個函數的存在真的是比較可惜)</span></p><h3 id="3Deep-learning-model" data-id="3Deep-learning-model"><a class="anchor hidden-xs" href="#3Deep-learning-model" title="3Deep-learning-model"><span class="octicon octicon-link"></span></a><span>3.Deep learning model:</span></h3><p><span>嘗試使用DeepLabV3、RIT、U-Net或其他專門用在segmentation的model</span><br>
+<span>今天最後一組報告使用到了YOLO先初步找出瞳孔的位置，再進行瞳孔標註的方法我們也覺得很有趣，感覺這麼做之後，瞳孔標註模型就可以很大程度的減少label unbalance的問題，聽起來也是很棒的嘗試。</span></p><p><span>報告真的很精彩，讓我們學到了很多東西，想在最後感謝一下老師跟助教，謝謝你們花時間與心力舉辦這個期末專題。</span></p><h2 id="Reference" data-id="Reference"><a class="anchor hidden-xs" href="#Reference" title="Reference"><span class="octicon octicon-link"></span></a><span>Reference:</span></h2><p><strong><span>1.AutoEncoder:</span></strong><br>
+<span>(1)</span><a href="https://medium.com/ml-note/autoencoder-%E4%B8%80-%E8%AA%8D%E8%AD%98%E8%88%87%E7%90%86%E8%A7%A3-725854ab25e8" target="_blank" rel="noopener"><span>https://medium.com/ml-note/autoencoder-一-認識與理解-725854ab25e8</span></a><br>
+<span>(2)</span><a href="https://jason-chen-1992.weebly.com/home/-autoencoder" target="_blank" rel="noopener"><span>https://jason-chen-1992.weebly.com/home/-autoencoder</span></a><br>
+<span>(3)</span><a href="https://blog.keras.io/building-autoencoders-in-keras.html" target="_blank" rel="noopener"><span>https://blog.keras.io/building-autoencoders-in-keras.html</span></a></p></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li><a href="#Gazin-Final-Project-Report-—-Pupil-Tracking" title="Gazin Final Project Report — Pupil Tracking">Gazin Final Project Report — Pupil Tracking</a><ul class="nav">
+<li><a href="#Pipeline" title="Pipeline">Pipeline</a></li>
+<li><a href="#Pupil-Tracking-Method" title="Pupil Tracking Method:">Pupil Tracking Method:</a><ul class="nav">
+<li><a href="#1Pupil-Image-Generator" title="1.Pupil Image Generator">1.Pupil Image Generator</a></li>
+<li><a href="#2Confidence-Value-Generator" title="2.Confidence Value Generator:">2.Confidence Value Generator:</a></li>
+</ul>
+</li>
+<li><a href="#Experiment" title="Experiment:">Experiment:</a><ul class="nav">
+<li><a href="#Step1Oversample-the-0-labeled-images" title="Step1.Oversample the 0-labeled images">Step1.Oversample the 0-labeled images</a></li>
+<li><a href="#Step2Combine-5-images-as-model-input" title="Step2.Combine 5 images as model input">Step2.Combine 5 images as model input</a></li>
+<li><a href="#Step3Increase-the-training-data-with-eyelash-on-it" title="Step3.Increase the training data with eyelash on it">Step3.Increase the training data with eyelash on it</a></li>
+<li><a href="#Step4Adjust-CNN-Kernel-Size" title="Step4.Adjust CNN Kernel Size">Step4.Adjust CNN Kernel Size</a></li>
+<li><a href="#Step5Morphological-Operation-amp-Weighted-Median-FilterWMF" title="Step5.Morphological Operation &amp; Weighted Median Filter(WMF)">Step5.Morphological Operation &amp; Weighted Median Filter(WMF)</a></li>
+</ul>
+</li>
+<li><a href="#Codalab-ResultsS5" title="Codalab Results(S5)">Codalab Results(S5)</a></li>
+<li><a href="#Review" title="Review">Review</a><ul class="nav">
+<li><a href="#1沒有進行額外model的嘗試" title="1.沒有進行額外model的嘗試:">1.沒有進行額外model的嘗試:</a></li>
+<li><a href="#2Training-Epoch不夠多" title="2.Training Epoch不夠多">2.Training Epoch不夠多</a></li>
+<li><a href="#3使用了Rule-based的方法來做confidence-prediction" title="3.使用了Rule-based的方法來做confidence prediction">3.使用了Rule-based的方法來做confidence prediction</a></li>
+<li><a href="#4沒有實作太多Data-augmentation" title="4.沒有實作太多Data augmentation">4.沒有實作太多Data augmentation</a></li>
+<li><a href="#5沒有嘗試更多的post-process" title="5.沒有嘗試更多的post process">5.沒有嘗試更多的post process</a></li>
+</ul>
+</li>
+<li><a href="#Conclusion" title="Conclusion:">Conclusion:</a></li>
+<li><a href="#Future-Work-聽完報告後寫的" title="Future Work (聽完報告後寫的):">Future Work (聽完報告後寫的):</a><ul class="nav">
+<li><a href="#1-prepocessing" title="1. prepocessing:">1. prepocessing:</a></li>
+<li><a href="#2-postprocessing" title="2. postprocessing:">2. postprocessing:</a></li>
+<li><a href="#3Deep-learning-model" title="3.Deep learning model:">3.Deep learning model:</a></li>
+</ul>
+</li>
+<li><a href="#Reference" title="Reference:">Reference:</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
+        <div class="toc"><ul class="nav">
+<li><a href="#Gazin-Final-Project-Report-—-Pupil-Tracking" title="Gazin Final Project Report — Pupil Tracking">Gazin Final Project Report — Pupil Tracking</a><ul class="nav">
+<li><a href="#Pipeline" title="Pipeline">Pipeline</a></li>
+<li><a href="#Pupil-Tracking-Method" title="Pupil Tracking Method:">Pupil Tracking Method:</a><ul class="nav">
+<li><a href="#1Pupil-Image-Generator" title="1.Pupil Image Generator">1.Pupil Image Generator</a></li>
+<li><a href="#2Confidence-Value-Generator" title="2.Confidence Value Generator:">2.Confidence Value Generator:</a></li>
+</ul>
+</li>
+<li><a href="#Experiment" title="Experiment:">Experiment:</a><ul class="nav">
+<li><a href="#Step1Oversample-the-0-labeled-images" title="Step1.Oversample the 0-labeled images">Step1.Oversample the 0-labeled images</a></li>
+<li><a href="#Step2Combine-5-images-as-model-input" title="Step2.Combine 5 images as model input">Step2.Combine 5 images as model input</a></li>
+<li><a href="#Step3Increase-the-training-data-with-eyelash-on-it" title="Step3.Increase the training data with eyelash on it">Step3.Increase the training data with eyelash on it</a></li>
+<li><a href="#Step4Adjust-CNN-Kernel-Size" title="Step4.Adjust CNN Kernel Size">Step4.Adjust CNN Kernel Size</a></li>
+<li><a href="#Step5Morphological-Operation-amp-Weighted-Median-FilterWMF" title="Step5.Morphological Operation &amp; Weighted Median Filter(WMF)">Step5.Morphological Operation &amp; Weighted Median Filter(WMF)</a></li>
+</ul>
+</li>
+<li><a href="#Codalab-ResultsS5" title="Codalab Results(S5)">Codalab Results(S5)</a></li>
+<li><a href="#Review" title="Review">Review</a><ul class="nav">
+<li><a href="#1沒有進行額外model的嘗試" title="1.沒有進行額外model的嘗試:">1.沒有進行額外model的嘗試:</a></li>
+<li><a href="#2Training-Epoch不夠多" title="2.Training Epoch不夠多">2.Training Epoch不夠多</a></li>
+<li><a href="#3使用了Rule-based的方法來做confidence-prediction" title="3.使用了Rule-based的方法來做confidence prediction">3.使用了Rule-based的方法來做confidence prediction</a></li>
+<li><a href="#4沒有實作太多Data-augmentation" title="4.沒有實作太多Data augmentation">4.沒有實作太多Data augmentation</a></li>
+<li><a href="#5沒有嘗試更多的post-process" title="5.沒有嘗試更多的post process">5.沒有嘗試更多的post process</a></li>
+</ul>
+</li>
+<li><a href="#Conclusion" title="Conclusion:">Conclusion:</a></li>
+<li><a href="#Future-Work-聽完報告後寫的" title="Future Work (聽完報告後寫的):">Future Work (聽完報告後寫的):</a><ul class="nav">
+<li><a href="#1-prepocessing" title="1. prepocessing:">1. prepocessing:</a></li>
+<li><a href="#2-postprocessing" title="2. postprocessing:">2. postprocessing:</a></li>
+<li><a href="#3Deep-learning-model" title="3.Deep learning model:">3.Deep learning model:</a></li>
+</ul>
+</li>
+<li><a href="#Reference" title="Reference:">Reference:</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
